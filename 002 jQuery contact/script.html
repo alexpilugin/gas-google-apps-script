@@ -1,0 +1,41 @@
+<script>
+    try {
+
+        $(document).ready(function () {
+            console.log("document is ready!");
+
+            $('#email_subscribe').on('submit', function (e) {
+                e.preventDefault();
+
+                var email = $("input#email").val();
+                var atpos = email.indexOf("@");
+                var dotpos = email.lastIndexOf(".");
+
+                if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
+                    $("span.error").text("Please enter a valid email address").show();
+                    return false;
+                } else {
+                    $("span.error").hide();
+                }
+
+                google.script.run.withSuccessHandler(function (ret) {
+                    $("#thank_you").show("slow");
+                    $("#email_subscribe").slideUp();
+                    console.log("subscribed:", email);
+                    console.log("Success:", ret);
+                }).addEmail(this); //addEmail() callback on server side
+
+                google.script.run.withFailureHandler(function (ret) {
+                    console.log("Failure:", ret);
+                }).addEmailFailure(this); //addEmailFailure() callback on server side
+            });
+
+        });
+
+
+    } catch (e) {
+        google.script.run.logErrors(e.toString()); //calling server
+        throw (e); //output in Console
+    }
+
+</script>

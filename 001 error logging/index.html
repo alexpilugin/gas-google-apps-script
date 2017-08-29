@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <script>
+        try {
+            hiUser("Welcome guest!"); //error on Frontend
+        } catch (e) {
+            google.script.run.logErrors(e.toString()); //calling server
+            throw (e); //output in Console
+        }
+    </script>
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+</head>
+
+<body>
+    <h1>HELLO!</h1>
+    <div id="subscribe_form">
+        <form>
+            <input type="email" name="email" id="email" placeholder="Enter your email">
+            <input type="submit" value="Subscribe">
+        </form>
+        <span id="thank_you">Thank you!</span>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>-->
+    <?!= HtmlService.createHtmlOutputFromFile('script').getContent(); ?>
+    <?!= HtmlService.createHtmlOutputFromFile('css').getContent(); ?>
+</head>
+
+<body>
+    <h1>SUBSCRIBE</h1>
+    
+    <div id="subscribe_form">
+        <form id="email_subscribe">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="Enter your email">
+            <span class="error" hidden="true"></span>
+            <button type="submit" value="Subscribe">Subscribe</button>
+        </form>
+        <span id="thank_you" hidden="true">Thank you!</span>
+    </div>
+
+</body>
+
+</html>
